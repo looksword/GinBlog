@@ -1,0 +1,32 @@
+sudo apt update
+sudo apt install mysql-server
+
+#check
+sudo systemctl status mysql
+
+
+#security
+sudo mysql_secure_installation
+# y
+# 2
+# root's password
+# y
+# then all y
+
+
+# try login mysql
+sudo mysql
+# new database
+> CREATE DATABASE ginblog;
+# list databases
+> SHOW DATABASES;
+# delete database
+> DROP DATABASE ginblog;
+
+# create a new mysql user account
+> CREATE USER 'ginblog'@'localhost' IDENTIFIED BY 'Admin537.';
+# list mysql user account
+> SELECT user,host FROM mysql.user;
+# Grant permissions to a mysql user account
+> GRANT ALL PRIVILEGES ON ginblog.* TO 'ginblog'@'localhost';
+

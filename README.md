@@ -1,17 +1,17 @@
 # GinBlog
-Gin Vue  
+Gin, Vue  
 
-api           interaction interface  
-config        configuration parameters  
+api           (interaction interface)  
+config        (configuration parameters)  
 middleware      
-model         database model  
-routes        router  
-utils         global tool  
-upload        upload file  
+model         (database model)  
+routes        (router)  
+utils         (global tool)  
+upload        (upload file)  
 web             
 
 
-
-gorm		github.com/jinzhu/gorm  
+database      (mysql)
+gorm          (github.com/jinzhu/gorm)  
 
 

@@ -9,3 +9,9 @@ routes        router
 utils         global tool
 upload        upload file
 web           
+
+
+
+gorm		github.com/jinzhu/gorm
+
+

@@ -10,13 +10,19 @@ import (
 func InitRouter() {
     gin.SetMode(utils.AppMode)
     r := gin.Default()
-    router := r.Group("api/v1")
+    routerv1 := r.Group("api/v1")
     {
-        router.GET("hello", func(c *gin.Context) {
-            c.JSON(http.StatusOK, gin.H{
-                "msg":"ok",
-            })
-        })
+        //User Router
+        routerv1.POST("user/add",v1.AddUser)
+        routerv1.GET("users",v1.GetUsers)
+        routerv1.PUT("user/:id",v1.EditUser)
+        routerv1.DELETE("user/:id",v1.DeleteUser)
+
+        //Category Router
+
+        //Article Router
+
+        //Login Router
     }
 
     r.Run(utils.HttpPort)

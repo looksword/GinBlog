@@ -3,7 +3,7 @@ package routes
 import (
     "GinBlog/utils"
     "github.com/gin-gonic/gin"
-    "net/http"
+    "GinBlog/api/v1"
 )
 
 

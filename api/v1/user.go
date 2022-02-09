@@ -6,6 +6,7 @@ import (
     "net/http"
     "GinBlog/utils/errmsg"
     "strconv"
+    "log"
 )
 
 var code int
@@ -14,7 +15,10 @@ var code int
 func AddUser(c *gin.Context) {
     //
     var data model.User
-    _ = c.ShouldBindJSON(&data)
+    err := c.ShouldBindJSON(&data)
+    if err != nil {
+         log.Fatal(err)
+    }
     code = model.CheckUser(data.Username)
     if code == errmsg.SUCCESS {
         model.CreateUser(&data)
@@ -55,9 +59,34 @@ func GetUsers(c *gin.Context) {
 // edit user
 func EditUser(c *gin.Context) {
     //
+    var data model.User
+    id,_ := strconv.Atoi(c.Param("id"))
+    err := c.ShouldBindJSON(&data)
+    if err != nil {
+         log.Fatal(err)
+    }
+    code = model.CheckUser(data.Username)
+    if code == errmsg.SUCCESS {
+        model.EditUser(id,&data)
+    }
+    if code == errmsg.ERROR_USERNAME_USED {
+        c.Abort()
+    }
+    c.JSON(http.StatusOK,gin.H{
+        "status":code,
+        "message":errmsg.GetErrMsg(code),
+    })
 }
 
 // delete user
 func DeleteUser(c *gin.Context) {
     //
+    id,_ := strconv.Atoi(c.Param("id"))
+    code = model.DeleteUser(id)
+
+    c.JSON(http.StatusOK,gin.H{
+        "status":code,
+        "message":errmsg.GetErrMsg(code),
+    })
 }
+

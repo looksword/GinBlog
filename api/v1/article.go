@@ -1,12 +1,79 @@
 package v1
 
-// add article
+import (
+    "GinBlog/model"
+    "GinBlog/utils/errmsg"
+    "github.com/gin-gonic/gin"
+    "net/http"
+    "log"
+    "strconv"
+)
 
-// query article
+// add article
+func AddArt(c *gin.Context) {
+    //
+    var data model.Article
+    err := c.ShouldBindJSON(&data)
+    if err != nil {
+         log.Fatal(err)
+    }
+    code = model.CreateArt(&data)
+
+    c.JSON(http.StatusOK,gin.H{
+        "status":code,
+        "data":data,
+        "message":errmsg.GetErrMsg(code),
+    })
+}
+
+// query single article
+
 
 // query articles
+func GetArts(c *gin.Context) {
+    //
+    pageSize,_ := strconv.Atoi(c.Query("pagesize"))
+    pageNum,_ := strconv.Atoi(c.Query("pagenum"))
+    if pageSize == 0 {
+        pageSize = -1
+    }
+    if pageNum == 0 {
+        pageNum = -1
+    }
+    data := model.GetArts(pageSize,pageNum)
+    code = errmsg.SUCCESS
+    c.JSON(http.StatusOK,gin.H{
+        "status":code,
+        "data":data,
+        "message":errmsg.GetErrMsg(code),
+    })
+}
 
 // edit article
+func EditArt(c *gin.Context) {
+    //
+    var data model.Article
+    id,_ := strconv.Atoi(c.Param("id"))
+    err := c.ShouldBindJSON(&data)
+    if err != nil {
+         log.Fatal(err)
+    }
+    code = model.EditArt(id,&data)
+    c.JSON(http.StatusOK,gin.H{
+        "status":code,
+        "message":errmsg.GetErrMsg(code),
+    })
+}
 
 // delete article
+func DeleteArt(c *gin.Context) {
+    //
+    id,_ := strconv.Atoi(c.Param("id"))
+    code = model.DeleteArt(id)
+
+    c.JSON(http.StatusOK,gin.H{
+        "status":code,
+        "message":errmsg.GetErrMsg(code),
+    })
+}
 

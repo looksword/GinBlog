@@ -19,9 +19,17 @@ func InitRouter() {
         routerv1.DELETE("user/:id",v1.DeleteUser)
 
         //Category Router
-
+        routerv1.POST("category/add",v1.AddCate)
+        routerv1.GET("categorys",v1.GetCates)
+        routerv1.PUT("category/:id",v1.EditCate)
+        routerv1.DELETE("category/:id",v1.DeleteCate)
+        
         //Article Router
-
+        routerv1.POST("article/add",v1.AddArt)
+        routerv1.GET("articles",v1.GetArts)
+        routerv1.PUT("article/:id",v1.EditArt)
+        routerv1.DELETE("article/:id",v1.DeleteArt)
+        
         //Login Router
     }
 

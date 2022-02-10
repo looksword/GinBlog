@@ -13,9 +13,10 @@ const (
     ERROR_TOKEN_WRONG = 1006
     ERROR_TOKEN_FORMATERROR = 1007
     // code=2000... Article error
-
+    ERROR_ARTICLE_NOT_EXIST = 2001
     // code=3000... Category error
     ERROR_CATENAME_USED = 3001
+    ERROR_CATE_NOT_EXIST = 3002
 )
 
 var codeMsg = map[int]string{
@@ -28,9 +29,12 @@ var codeMsg = map[int]string{
     ERROR_TOKEN_TIMEOUT: "Token expired",
     ERROR_TOKEN_WRONG: "Incorrect Token",
     ERROR_TOKEN_FORMATERROR: "Token format error",
+    ERROR_ARTICLE_NOT_EXIST: "Article does not exist",
     ERROR_CATENAME_USED: "Category already exists!",
+    ERROR_CATE_NOT_EXIST: "Category does not exists",
 }
 
 func GetErrMsg(code int)string {
     return codeMsg[code]
 }
+

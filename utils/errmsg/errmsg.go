@@ -12,6 +12,7 @@ const (
     ERROR_TOKEN_TIMEOUT = 1005
     ERROR_TOKEN_WRONG = 1006
     ERROR_TOKEN_FORMATERROR = 1007
+    ERROR_USER_NO_RIGHT = 1008
     // code=2000... Article error
     ERROR_ARTICLE_NOT_EXIST = 2001
     // code=3000... Category error
@@ -29,6 +30,7 @@ var codeMsg = map[int]string{
     ERROR_TOKEN_TIMEOUT: "Token expired",
     ERROR_TOKEN_WRONG: "Incorrect Token",
     ERROR_TOKEN_FORMATERROR: "Token format error",
+    ERROR_USER_NO_RIGHT: "User does not have permission",
     ERROR_ARTICLE_NOT_EXIST: "Article does not exist",
     ERROR_CATENAME_USED: "Category already exists!",
     ERROR_CATE_NOT_EXIST: "Category does not exists",

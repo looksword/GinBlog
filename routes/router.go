@@ -2,6 +2,7 @@ package routes
 
 import (
     "GinBlog/utils"
+    "GinBlog/middleware"
     "github.com/gin-gonic/gin"
     "GinBlog/api/v1"
 )
@@ -10,29 +11,33 @@ import (
 func InitRouter() {
     gin.SetMode(utils.AppMode)
     r := gin.Default()
-    routerv1 := r.Group("api/v1")
+    
+    auth := r.Group("api/v1")
+    auth.Use(middleware.JwtToken())
     {
-        //User Router
-        routerv1.POST("user/add",v1.AddUser)
-        routerv1.GET("users",v1.GetUsers)
-        routerv1.PUT("user/:id",v1.EditUser)
-        routerv1.DELETE("user/:id",v1.DeleteUser)
+        //User Router  
+        auth.PUT("user/:id",v1.EditUser)
+        auth.DELETE("user/:id",v1.DeleteUser)
 
         //Category Router
-        routerv1.POST("category/add",v1.AddCate)
-        routerv1.GET("categorys",v1.GetCates)
-        routerv1.PUT("category/:id",v1.EditCate)
-        routerv1.DELETE("category/:id",v1.DeleteCate)
+        auth.POST("category/add",v1.AddCate)
+        auth.PUT("category/:id",v1.EditCate)
+        auth.DELETE("category/:id",v1.DeleteCate)
         
         //Article Router
-        routerv1.POST("article/add",v1.AddArt)
-        routerv1.GET("articles",v1.GetArts)
-        routerv1.GET("articles-category/:id",v1.GetCateArt)
-        routerv1.GET("article/info/:id",v1.GetArtInfo)
-        routerv1.PUT("article/:id",v1.EditArt)
-        routerv1.DELETE("article/:id",v1.DeleteArt)
-        
-        //Login Router
+        auth.POST("article/add",v1.AddArt)
+        auth.PUT("article/:id",v1.EditArt)
+        auth.DELETE("article/:id",v1.DeleteArt)
+    }
+    router := r.Group("api/v1")
+    {
+        router.POST("user/add",v1.AddUser)
+        router.GET("users",v1.GetUsers)
+        router.GET("categorys",v1.GetCates)
+        router.GET("articles",v1.GetArts)
+        router.GET("articles-category/:id",v1.GetCateArt)
+        router.GET("article/info/:id",v1.GetArtInfo)
+        router.POST("login",v1.Login)
     }
 
     r.Run(utils.HttpPort)

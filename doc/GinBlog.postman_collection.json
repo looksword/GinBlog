@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "ace739ae-b379-4859-bb78-8684bbe3ec1f",
+		"name": "GinBlog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"looksword\",\"password\":\"123456\",\"role\":0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9103/api/v1/user/add",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/users?pagesize=1&pagenum=1",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "1",
+									"description": "page size"
+								},
+								{
+									"key": "pagenum",
+									"value": "1",
+									"description": "page num"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"lookswordwiller\",\"role\":0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9103/api/v1/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/user/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Add Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"First\"}"
+						},
+						"url": {
+							"raw": "localhost:9103/api/v1/category/add",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/categorys?pagesize=1&pagenum=1",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"categorys"
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "1",
+									"description": "page size"
+								},
+								{
+									"key": "pagenum",
+									"value": "1",
+									"description": "page num"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"First\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9103/api/v1/category/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/user/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Add Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/article/add",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"article",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/articles?pagesize=1&pagenum=1",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"articles"
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "1",
+									"description": "page size"
+								},
+								{
+									"key": "pagenum",
+									"value": "1",
+									"description": "page num"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Article",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"lookswordwiller\",\"role\":0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9103/api/v1/article/",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"article",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9103/api/v1/article/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"api",
+								"v1",
+								"article",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

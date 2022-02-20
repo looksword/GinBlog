@@ -3,7 +3,7 @@ Gin, Vue
 
 api           (interaction interface)  
 config        (configuration parameters)  
-middleware    (jwt,validator,cors)
+middleware    (jwt,validator,cors)  
 model         (database model)  
 routes        (router)  
 utils         (global tool)  

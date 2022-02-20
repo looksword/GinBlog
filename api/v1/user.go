@@ -2,6 +2,7 @@ package v1
 
 import (
     "GinBlog/model"
+    "GinBlog/utils/validator"
     "github.com/gin-gonic/gin"
     "net/http"
     "GinBlog/utils/errmsg"
@@ -15,9 +16,15 @@ var code int
 func AddUser(c *gin.Context) {
     //
     var data model.User
-    err := c.ShouldBindJSON(&data)
-    if err != nil {
-         log.Fatal(err)
+    var msg string
+    _ = c.ShouldBindJSON(&data)
+    msg,code = validator.Validate(&data)
+    if code != errmsg.SUCCESS {
+        c.JSON(http.StatusOK,gin.H{
+            "status":code,
+            "message":msg,
+        })
+        return
     }
     code = model.CheckUser(data.Username)
     if code == errmsg.SUCCESS {
@@ -47,11 +54,12 @@ func GetUsers(c *gin.Context) {
     if pageNum == 0 {
         pageNum = -1
     }
-    data := model.GetUsers(pageSize,pageNum)
+    data,total := model.GetUsers(pageSize,pageNum)
     code = errmsg.SUCCESS
     c.JSON(http.StatusOK,gin.H{
         "status":code,
         "data":data,
+        "total":total,
         "message":errmsg.GetErrMsg(code),
     })
 }

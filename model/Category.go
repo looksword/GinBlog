@@ -33,13 +33,14 @@ func CreateCate(data *Category)int {
 //query article from category
 
 // query categorys
-func GetCates(pageSize int,pageNum int) []Category {
+func GetCates(pageSize int,pageNum int) ([]Category,int) {
     var cates []Category
-    err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&cates).Error
+    var total int
+    err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&cates).Count(&total).Error
     if err != nil && err != gorm.ErrRecordNotFound {
-        return nil
+        return nil,0
     }
-    return cates
+    return cates,total
 }
 
 // edit category

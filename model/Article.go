@@ -27,13 +27,14 @@ func CreateArt(data *Article)int {
 }
 
 //query article from category
-func GetCateArt(cid int,pageSize int,pageNum int) ([]Article,int) {
+func GetCateArt(cid int,pageSize int,pageNum int) ([]Article,int,int) {
     var cateartlist []Article
-    err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Where("cid = ?",cid).Find(&cateartlist).Error
+    var total int
+    err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Where("cid = ?",cid).Find(&cateartlist).Count(&total).Error
     if err != nil {
-        return nil,errmsg.ERROR_CATE_NOT_EXIST
+        return nil,errmsg.ERROR_CATE_NOT_EXIST,0
     }
-    return cateartlist,errmsg.SUCCESS
+    return cateartlist,errmsg.SUCCESS,total
 }
 
 //query article info
@@ -47,13 +48,14 @@ func GetArtInfo(id int) (Article,int) {
 }
 
 // query categorys
-func GetArts(pageSize int,pageNum int) ([]Article,int) {
+func GetArts(pageSize int,pageNum int) ([]Article,int,int) {
     var articleList []Article
-    err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
+    var total int
+    err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Count(&total).Error
     if err != nil && err != gorm.ErrRecordNotFound {
-        return nil,errmsg.ERROR
+        return nil,errmsg.ERROR,0
     }
-    return articleList,errmsg.SUCCESS
+    return articleList,errmsg.SUCCESS,total
 }
 
 // edit Article
